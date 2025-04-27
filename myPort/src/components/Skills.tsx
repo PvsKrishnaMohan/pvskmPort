@@ -12,6 +12,7 @@ const Skills: React.FC = () => {
 
   const skills = [
     { id: 'react', name: 'React.js', color: '#61DAFB' },
+    { id: 'javascript', name: 'javascript', color: '#61DAKB' },
     { id: 'node', name: 'Node.js', color: '#539E43' },
     { id: 'python', name: 'Python', color: '#3776AB' },
     { id: 'azure', name: 'Azure', color: '#0089D6' },
