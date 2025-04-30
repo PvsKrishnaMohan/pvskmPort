@@ -9,14 +9,18 @@ const Hero: React.FC = () => {
   const [canvasInitialized, setCanvasInitialized] = useState(false);
 
   useEffect(() => {
+    let vantaEffect: any = null;
+
     const initVanta = async () => {
       if (canvasInitialized || !containerRef.current) return;
-      
+
       try {
         const VANTA = await import('vanta/dist/vanta.waves.min');
         const THREE = await import('three');
-        
-        VANTA.default({
+
+        if (!containerRef.current) return;
+
+        vantaEffect = VANTA.default({
           el: containerRef.current,
           THREE: THREE,
           mouseControls: true,
@@ -32,24 +36,19 @@ const Hero: React.FC = () => {
           waveSpeed: 0.75,
           zoom: 0.65
         });
-        
+
         setCanvasInitialized(true);
       } catch (error) {
         console.error('Failed to load Vanta effect:', error);
       }
     };
 
-    initVanta();
+    const timeoutId = setTimeout(initVanta, 100);
 
     return () => {
-      if (canvasInitialized && containerRef.current) {
-        try {
-          if (containerRef.current.__vantaEffect) {
-            containerRef.current.__vantaEffect.destroy();
-          }
-        } catch (error) {
-          console.error('Failed to destroy Vanta effect:', error);
-        }
+      clearTimeout(timeoutId);
+      if (vantaEffect) {
+        vantaEffect.destroy();
       }
     };
   }, [canvasInitialized]);

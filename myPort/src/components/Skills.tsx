@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
 import { OrbitControls, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -11,27 +11,30 @@ const Skills: React.FC = () => {
   const [activeSkill, setActiveSkill] = useState<string | null>(null);
 
   const skills = [
-    { id: 'react', name: 'React.js', color: '#61DAFB' },
-    { id: 'javascript', name: 'javascript', color: '#61DAKB' },
-    { id: 'node', name: 'Node.js', color: '#539E43' },
-    { id: 'python', name: 'Python', color: '#3776AB' },
-    { id: 'azure', name: 'Azure', color: '#0089D6' },
-    { id: 'tailwind', name: 'Tailwind CSS', color: '#38B2AC' },
-    { id: 'bootstrap', name: 'Bootstrap', color: '#7952B3' },
-    { id: 'material', name: 'Material UI', color: '#0081CB' }
+    { id: 'react', name: 'React.js', color: '#61DAFB', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583093/react_1_d4icd3.png' },
+    { id: 'javascript', name: 'JavaScript', color: '#F7DF1E', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583094/javascript_tafrzr.png' },
+    { id: 'node', name: 'Node.js', color: '#539E43', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583093/nodejs_pvxit8.png' },
+    { id: 'python', name: 'Python', color: '#3776AB', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583092/python_zwqd14.png' },
+    { id: 'azure', name: 'Azure', color: '#0089D6', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583092/python_zwqd14.png' },
+    { id: 'tailwind', name: 'Tailwind CSS', color: '#38B2AC', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583092/tailwind_ha7rwq.png' },
+    { id: 'bootstrap', name: 'Bootstrap', color: '#7952B3', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583092/bootstrap-framework_xx0vpn.png' },
+    { id: 'material', name: 'Material UI', color: '#0081CB', imageUrl: 'https://res.cloudinary.com/krishnamohan479/image/upload/v1738583093/git_sytdys.png' }
   ];
 
-  const SkillSphere = ({ color, isActive }: { color: string; isActive: boolean }) => {
-    const meshRef = useRef<THREE.Mesh>(null);
-
+  const SkillSphere = ({
+    imageUrl,
+    isActive
+  }: {
+    imageUrl: string;
+    isActive: boolean;
+  }) => {
+    const texture = useLoader(THREE.TextureLoader, imageUrl);
     return (
-      <Sphere args={[1, 32, 32]} ref={meshRef}>
+      <Sphere args={[1, 32, 32]}>
         <meshStandardMaterial
-          color={color}
-          metalness={0.7}
-          roughness={0.3}
-          opacity={0.9}
-          transparent
+          map={texture}
+          metalness={0.6}
+          roughness={0.4}
         />
       </Sphere>
     );
@@ -82,7 +85,7 @@ const Skills: React.FC = () => {
                 <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
                   <ambientLight intensity={0.5} />
                   <pointLight position={[10, 10, 10]} />
-                  <SkillSphere color={skill.color} isActive={activeSkill === skill.id} />
+                  <SkillSphere imageUrl={skill.imageUrl} isActive={activeSkill === skill.id} />
                   <OrbitControls
                     enableZoom={false}
                     enablePan={false}
