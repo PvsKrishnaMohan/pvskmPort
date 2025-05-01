@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import Threads from './Threads';
 
 const Hero: React.FC = () => {
   const { t } = useTranslation();
@@ -62,7 +63,14 @@ const Hero: React.FC = () => {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300" 
       id="hero"
-    >      
+    >
+      <div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 0 }}>
+    <Threads
+      amplitude={2.3}
+      distance={0.5}
+      enableMouseInteraction={false}
+    />
+  </div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
