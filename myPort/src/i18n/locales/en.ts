@@ -46,6 +46,6 @@ export default {
   "messageRequired": "Message is required",
   
   // Footer
-  "copyright": "© 2025 Krishna Mohan P.V.S. All rights reserved.",
-  "designedBy": "Designed and built with ❤️"
+  "copyright": "Krishna Mohan P.V.S. All rights reserved.",
+  "designedBy": "Designed and built with ❤️ by P.V.S.K.M"
 };

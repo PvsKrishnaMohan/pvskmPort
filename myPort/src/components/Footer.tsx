@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
             className="text-center"
           >
             <p className="text-gray-600 dark:text-gray-400 mb-2 flex items-center justify-center">
-              {t('designedBy')} <Heart className="h-4 w-4 text-red-500 mx-1 inline-block" />
+              {t('designedBy')} 
             </p>
             <p className="text-gray-600 dark:text-gray-400">
               &copy; {currentYear} {t('copyright')}
