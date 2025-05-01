@@ -79,7 +79,7 @@ const About: React.FC = () => {
                       separator=","
                       direction="up"
                       duration={0.9}
-                      className="count-up-text"
+                      className="count-up-text text-blue-800"
                       startWhen={true}
                     />+
                   </div>
