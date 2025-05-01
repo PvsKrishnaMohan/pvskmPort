@@ -81,7 +81,7 @@ const About: React.FC = () => {
                       duration={0.9}
                       className="count-up-text text-blue-800"
                       startWhen={true}
-                    />+
+                    /> <span className="count-up-text text-blue-800">+</span>
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
                     Years Experience
